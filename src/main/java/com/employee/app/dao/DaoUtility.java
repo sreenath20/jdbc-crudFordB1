@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySqlUtility {
+public class DaoUtility {
 
 	public static Connection getConnectionToMySQL() {
 		Connection connection = null;
@@ -25,7 +25,7 @@ public class MySqlUtility {
 		Connection connection = null;
 		try {
 			connection = DriverManager
-					.getConnection("jdbc:oracle:thin:@localhost:1521:xe/ford","SYS","admin");
+					.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ford","ford");
 			System.out.println("Connection to Oracle successful!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

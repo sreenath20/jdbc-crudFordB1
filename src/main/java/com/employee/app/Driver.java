@@ -1,10 +1,11 @@
 package com.employee.app;
 
 import java.sql.Connection;
+import java.util.Optional;
 
 import com.employee.app.dao.EmployeeDAO;
 import com.employee.app.dao.EmployeeDaoImpl;
-import com.employee.app.dao.MySqlUtility;
+import com.employee.app.dao.DaoUtility;
 import com.employee.app.dto.Employee;
 
 public class Driver {
@@ -18,20 +19,21 @@ public class Driver {
 		// EmployeeDaoImpl(MySqlUtility.getConnectionToMySQL()); // loose coupling
 
 		// Create dao using Oracle
-		 EmployeeDAO employeeDao = new EmployeeDaoImpl(MySqlUtility.getConnectionToOracle()); // loose coupling
+		 EmployeeDAO employeeDao = new EmployeeDaoImpl(DaoUtility.getConnectionToOracle()); // loose coupling
 
 		// employeeDao.addEmployee(new Employee(1, "name1", 25000.0));
 		// employeeDao.addEmployee(new Employee(2, "name2", 35000.0));
 
 		// Read
-		Employee foundEmployee = employeeDao.getEmployeeById(1);
-		if (foundEmployee != null)
-			System.out.println(foundEmployee);
+		Optional<Employee> optFoundEmployee = employeeDao.getEmployeeById(1);
+		if (optFoundEmployee.isPresent())
+			System.out.println(optFoundEmployee.get());
 		else
 			System.out.println("Employee could not be found for given id");
-		Employee foundEmployee2 = employeeDao.getEmployeeById(2);
-		if (foundEmployee2 != null)
-			System.out.println(foundEmployee2);
+		
+		Optional<Employee> optFoundEmployee2 = employeeDao.getEmployeeById(2);
+		if (optFoundEmployee2.isPresent())
+			System.out.println(optFoundEmployee2.get());
 		else
 			System.out.println("Employee could not be found for given id");
 
@@ -42,9 +44,10 @@ public class Driver {
 		// employeeDao.addEmployee(new Employee(3, "name3", 35000.0));
 		Employee updateEmployee = new Employee(3, "Ford", 55000.0);
 		employeeDao.updateEmployee(updateEmployee);
-		Employee foundEmployee3 = employeeDao.getEmployeeById(3);
-		if (foundEmployee3 != null)
-			System.out.println(foundEmployee3);
+		
+		Optional<Employee> optFoundEmployee3 = employeeDao.getEmployeeById(3);
+		if (optFoundEmployee3.isPresent())
+			System.out.println(optFoundEmployee3.get());
 		else
 			System.out.println("Employee could not be found for given id");
 
