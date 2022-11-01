@@ -8,11 +8,20 @@ import java.sql.SQLException;
 import com.employee.app.dto.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDAO {
+	
+	private  Connection connection;
+	
+	
+
+	public EmployeeDaoImpl(Connection connection) {
+		super();
+		this.connection = connection;
+	}
 
 	@Override
 	public void addEmployee(Employee employee) {
 
-		Connection connection = MySqlUtility.getConnectionToMySQL();
+		//Connection connection = MySqlUtility.getConnectionToMySQL();
 		String sql = "INSERT INTO employee (id,name,salary) VALUES(?,?,?)";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -37,7 +46,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public Employee getEmployeeById(Integer employeeId) {
-		Connection connection = MySqlUtility.getConnectionToMySQL();
+		//Connection connection = MySqlUtility.getConnectionToMySQL();
 		String sql = "SELECT * FROM employee WHERE id = ?";
 
 		Employee newEmployee = null; // return null if emp does not exists for id
@@ -65,7 +74,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public void updateEmployee(Employee updateEmployee) {
-		Connection connection = MySqlUtility.getConnectionToMySQL();
+		//Connection connection = MySqlUtility.getConnectionToMySQL();
 		String sql = "UPDATE employee set name = ? , salary = ? WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -88,7 +97,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public void deleteEmployeeById(Integer employeeId) {
-		Connection connection = MySqlUtility.getConnectionToMySQL();
+		//Connection connection = MySqlUtility.getConnectionToMySQL();
 		String sql = "DELETE FROM employee WHERE id = ?";
 
 		try {

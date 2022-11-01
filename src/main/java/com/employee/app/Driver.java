@@ -13,8 +13,13 @@ public class Driver {
 		// EmployeeDaoImpl employeeDao = new EmployeeDaoImpl(); // tight coupling
 
 		// CRUD
-		// Create
-		EmployeeDAO employeeDao = new EmployeeDaoImpl(); // loose coupling
+		// Create dao using MySql
+		// EmployeeDAO employeeDao = new
+		// EmployeeDaoImpl(MySqlUtility.getConnectionToMySQL()); // loose coupling
+
+		// Create dao using Oracle
+		 EmployeeDAO employeeDao = new EmployeeDaoImpl(MySqlUtility.getConnectionToOracle()); // loose coupling
+
 		// employeeDao.addEmployee(new Employee(1, "name1", 25000.0));
 		// employeeDao.addEmployee(new Employee(2, "name2", 35000.0));
 
@@ -29,11 +34,10 @@ public class Driver {
 			System.out.println(foundEmployee2);
 		else
 			System.out.println("Employee could not be found for given id");
-		
-		
+
 		// delete
-		//employeeDao.deleteEmployeeById(1);
-		//employeeDao.deleteEmployeeById(2);
+		// employeeDao.deleteEmployeeById(1);
+		// employeeDao.deleteEmployeeById(2);
 		// update employee
 		// employeeDao.addEmployee(new Employee(3, "name3", 35000.0));
 		Employee updateEmployee = new Employee(3, "Ford", 55000.0);
@@ -43,7 +47,7 @@ public class Driver {
 			System.out.println(foundEmployee3);
 		else
 			System.out.println("Employee could not be found for given id");
-		
+
 	}
 
 }
