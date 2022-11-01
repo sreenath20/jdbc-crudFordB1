@@ -64,8 +64,25 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
+	public void updateEmployee(Employee updateEmployee) {
+		Connection connection = MySqlUtility.getConnectionToMySQL();
+		String sql = "UPDATE employee set name = ? , salary = ? WHERE id = ?";
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, updateEmployee.getName());
+			preparedStatement.setDouble(2, updateEmployee.getSalary());
+			preparedStatement.setInt(3, updateEmployee.getId());
+			Integer count = preparedStatement.executeUpdate();
+			if(count == 1)
+				System.out.println("Employee updated.");
+			else
+				System.out.println("Employee could not be updated.");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}
 

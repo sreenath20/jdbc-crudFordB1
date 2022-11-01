@@ -34,7 +34,15 @@ public class Driver {
 		// delete
 		//employeeDao.deleteEmployeeById(1);
 		//employeeDao.deleteEmployeeById(2);
-		
+		// update employee
+		// employeeDao.addEmployee(new Employee(3, "name3", 35000.0));
+		Employee updateEmployee = new Employee(3, "Ford", 55000.0);
+		employeeDao.updateEmployee(updateEmployee);
+		Employee foundEmployee3 = employeeDao.getEmployeeById(3);
+		if (foundEmployee3 != null)
+			System.out.println(foundEmployee3);
+		else
+			System.out.println("Employee could not be found for given id");
 		
 	}
 
